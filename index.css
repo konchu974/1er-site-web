@@ -1,5 +1,5 @@
 header > h1{
-  background-color:rgb(201, 243, 208);
+  background-color:rgba(201, 243, 208, 0.921);
   padding-top: 1%;
   height: 50px;
   text-align: center;
@@ -27,12 +27,11 @@ header > h1{
 body {
   position: relative;
   height: 100%;
+  background: rgb(201,243,208);
+  background: linear-gradient(180deg, rgba(201,243,208,1) 0%, rgba(250,235,215,1) 50%, rgba(201,243,208,1) 100%);
 }
 
-#mainpage {
-  background-color:rgb(0, 0, 0);
-  margin: 0; 
-}
+
 
 #main-grid{
   
@@ -42,66 +41,27 @@ body {
 
 
 }
-.texteb{
-  background-color: antiquewhite;
-  opacity: 80%;
-}
-
-
-
-/* @keyframes display {
-  0% {
-    transform: translateX(200px);
-    opacity: 0;
-  }
-  10% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  20% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  30% {
-    transform: translateX(-200px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-200px);
-    opacity: 0;
-  }
-} */
-
-/* .gallery {
-  position: relative;
-  width: 80%;
-}
-
-.gallery > img {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 100px);
-  opacity: 0;
-  animation: display 10s infinite;
-  width: 440px;
+.profile-slide > img {
+  width: 500px;
   height: auto;
+}
+.texteb{
 
 }
-img:nth-child(2) {
-  animation-delay: 2s;
-}
-img:nth-child(3) {
-  animation-delay: 4s;
-}
-img:nth-child(4) {
-  animation-delay: 6s;
-}
-img:nth-child(5) {
-  animation-delay: 8s;
-} */
-
 
 footer{
   position: relative;
-  background-color:rgb(201, 243, 208);
+  background-color:rgb(212, 243, 217);
+  opacity: 90%;
+
 }
+footer li{
+
+  list-style-type: none;
+  padding:10px;
+  
+} 
+footer p{
+
+}
+
