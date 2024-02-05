@@ -1,4 +1,3 @@
-
 var currentSlide = 0;
   var slides = document.querySelectorAll('.profile-slide');
 
@@ -17,4 +16,19 @@ var currentSlide = 0;
     }
 setInterval(nextSlide, 2000);
 
+function Validation() {
+    var pseudo = document.getElementById("pseudo").value;
+    var motDePasse = document.getElementById("motDePasse").value;
+    if( tentative > 0) {               
+    // Exemple de validation (vous devrez remplacer cela par une validation appropriée)
+    if (pseudo === "omar" && motDePasse === "2003f") {
+         window.location.href= " page3.html";
+    } else {
+        alert("Pseudo ou mot de passe incorrect!ressaye");
 
+    tentative-- ;
+    }
+
+
+}
+}

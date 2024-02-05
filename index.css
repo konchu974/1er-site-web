@@ -1,5 +1,7 @@
+/* palette de couleur  https://coolors.co/ec0b43-58355e-7ae7c7-d6ffb7-fff689 */
+
 header > h1{
-  background-color:rgba(201, 243, 208, 0.921);
+  background-color:rgb(214, 255, 183);
   padding-top: 1%;
   height: 50px;
   text-align: center;
@@ -11,27 +13,20 @@ header > h1{
   float: inline-start;
 }
 .connexion{
-  margin-right: 25px;
-}
-
-
-
-.connexion li {
+  margin-right: 30px;
+  margin-top: 30px;
   float: inline-end;
   display: inline-block;
   font-size: 20px;
-  margin-top: 10px;
-
-
+  
 }
 body {
   position: relative;
   height: 100%;
-  background: rgb(201,243,208);
-  background: linear-gradient(180deg, rgba(201,243,208,1) 0%, rgba(250,235,215,1) 50%, rgba(201,243,208,1) 100%);
+  background: linear-gradient(180deg, rgb(214, 255, 183) 0%, rgb(255, 246, 137) 50%, rgb(214, 255, 183) 100%);
 }
 
-
+/* rgb(255, 183, 183) */
 
 #main-grid{
   
@@ -44,24 +39,77 @@ body {
 .profile-slide > img {
   width: 500px;
   height: auto;
-}
-.texteb{
+  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 
 }
 
 footer{
   position: relative;
-  background-color:rgb(212, 243, 217);
+  background-color:rgb(214, 255, 183);
   opacity: 90%;
+  margin-top: 100px;
 
 }
 footer li{
-
   list-style-type: none;
-  padding:10px;
-  
+  width: 40px;
+  float: left;
+  margin-top: 20px
 } 
 footer p{
-
+  columns: 3;
+}
+.form-container {
+  background: rgb(255, 245, 130);
+  border-radius: 50px; 
+  box-shadow: 6px 6px 6px 6px #58355e39;
+  padding: 3em;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+label {
+  display: block; 
+  margin-bottom: 10px; 
+  height: inherit;
+  
+}
+h1{
+  color: rgb(0, 0, 0);
+  display: felex;
+  font-family: "Audiowide", sans-serif;
+}
+a{
+  display: flex;
+  text-decoration: none;
+  color: darkgray;
+  
 }
 
+input[type="text"],[type="password"], input[type="button"] {
+  border-radius: 5px;
+  background-color: rgb(122, 231, 199);
+  width: 300px; 
+  padding: 5px; 
+  margin-bottom: 10px; 
+  
+}
+.entrer{
+  
+  box-shadow: 6px 5px #58355e39;
+}
+
+input[type="submit"] {
+  background-color: rgb(122, 231, 199); 
+  border: none; 
+  padding: 15px 40px; 
+  cursor: none; 
+}
+
+.bouton:hover{
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
