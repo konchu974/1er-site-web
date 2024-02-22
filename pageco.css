@@ -1,0 +1,25 @@
+header > h1{
+    padding-top: 1%;
+    height: 50px;
+    text-align: center;
+    text-align-last: left;
+    font-weight: bold;
+    font-family: "Audiowide", sans-serif;
+  }
+  #logo-sfond{
+    float: inline-start;
+  }
+
+  .connexion{
+    margin-right: 30px;
+    margin-top: 30px;
+    float: inline-end;
+    display: inline-block;
+    font-size: 20px;
+    
+  }
+  body {
+    position: relative;
+    height: 100%;
+    background: linear-gradient(180deg, rgb(232, 95, 92) 0%, rgb(122, 231, 199) 60%, rgb(88, 53, 94) 100%);
+  }

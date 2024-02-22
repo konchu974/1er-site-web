@@ -14,21 +14,19 @@ var currentSlide = 0;
     function nextSlide() {
         showSlide(currentSlide + 1);
     }
-setInterval(nextSlide, 2000);
+setInterval(nextSlide, 3000);
 
 function Validation() {
     var pseudo = document.getElementById("pseudo").value;
-    var motDePasse = document.getElementById("motDePasse").value;
-    if( tentative > 0) {               
+    var motDePasse = document.getElementById("motDePasse").value;              
     // Exemple de validation (vous devrez remplacer cela par une validation appropriée)
     if (pseudo === "omar" && motDePasse === "2003f") {
          window.location.href= " page3.html";
     } else {
         alert("Pseudo ou mot de passe incorrect!ressaye");
 
-    tentative-- ;
     }
 
 
 }
-}
+
