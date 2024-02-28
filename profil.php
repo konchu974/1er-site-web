@@ -1,7 +1,9 @@
 <?php
+session_start();
 require_once("manipulation.php");
 
-session_start();
+
+$login = $_SESSION['user'];
 
 ?>
 
@@ -17,7 +19,7 @@ session_start();
 </head>
 
 <header>
-    <img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6">
+    <a href="page3.php"><img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6"></a>
     <div class="dropdown">
         <i class="fa-regular fa-user fa-2xl " style="color: #000000;"></i>
         <div class="dropdown-content">
@@ -30,27 +32,16 @@ session_start();
 </header>
 
 <body>
-    <ul>
-        <?php foreach ($musiques as $musique) : ?>
-            <li>
-                <?php echo $musique['nom_musique']; ?>
-                <img src="<?php echo $musique['photo_path']; ?>" alt="<?php echo $musique['nom_musique']; ?>">
-            </li>
-        <?php endforeach; ?>
-    </ul>
 
+
+    <div class="card-container">
+        <img class="round" src=<?php echo $admini['photo_adm'] ?> alt="user" />
+
+
+        <h1><?= isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] ?
+                ("Welcome " . $_SESSION['user']) :
+                "Accueil" ?></h1>
+        <p>User interface designer and <br /> front-end developer</p>
+
+    </div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html>
