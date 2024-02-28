@@ -1,0 +1,466 @@
+START TRANSACTION;
+CREATE TABLE T_playlist_play (
+	Id_play	INT AUTO_INCREMENT,
+	nom_playlist	VARCHAR(50),
+	PRIMARY KEY(Id_play)
+);
+CREATE TABLE T_personne_prsn (
+	Id_prsn	INT AUTO_INCREMENT,
+	age	DATE,
+	pseudo_prsn	VARCHAR(50),
+	sexe	char,
+	PRIMARY KEY(Id_prsn)
+);
+CREATE TABLE T_ambiance_amb (
+	Id_amb	INT AUTO_INCREMENT,
+	nom_ambiance	VARCHAR(50),
+	nombre_de_gens	TINYINT,
+	duree_evenement	TIME,
+	PRIMARY KEY(Id_amb)
+);
+CREATE TABLE T_artiste_art (
+	Id_art	INT AUTO_INCREMENT,
+	nom_artiste	VARCHAR(50),
+	PRIMARY KEY(Id_art)
+);
+CREATE TABLE T_genre_genre (
+	Id_genre	INT AUTO_INCREMENT,
+	nom_genre	VARCHAR(50),
+	PRIMARY KEY(Id_genre)
+);
+CREATE TABLE T_album_blum (
+	Id_blum	INT AUTO_INCREMENT,
+	nom_album	VARCHAR(50),
+	date_creation	DATETIME,
+	PRIMARY KEY(Id_blum)
+);
+CREATE TABLE T_style_musical_stmsc (
+	Id_stmsc	INT AUTO_INCREMENT,
+	genre	VARCHAR(50),
+	PRIMARY KEY(Id_stmsc)
+);
+CREATE TABLE TJ_jouer (
+	Id_play	INT,
+	Id_amb	INT,
+	FOREIGN KEY(Id_play) REFERENCES T_playlist_play(Id_play),
+	FOREIGN KEY(Id_amb) REFERENCES T_ambiance_amb(Id_amb),
+	PRIMARY KEY(Id_play,Id_amb)
+);
+CREATE TABLE TJ_liason (
+	Id_play	INT,
+	Id_misc	INT,
+	FOREIGN KEY(Id_play) REFERENCES T_playlist_play(Id_play),
+	FOREIGN KEY(Id_misc) REFERENCES T_musique_misc(Id_misc),
+	PRIMARY KEY(Id_play,Id_misc)
+);
+CREATE TABLE TJ_vote_vt (
+	Id_prsn	INT,
+	Id_misc	INT,
+	FOREIGN KEY(Id_prsn) REFERENCES T_personne_prsn(Id_prsn),
+	FOREIGN KEY(Id_misc) REFERENCES T_musique_misc(Id_misc),
+	PRIMARY KEY(Id_prsn,Id_misc)
+);
+CREATE TABLE TJ_creer_cr (
+	Id_misc	INT,
+	Id_art	INT,
+	FOREIGN KEY(Id_art) REFERENCES T_artiste_art(Id_art),
+	FOREIGN KEY(Id_misc) REFERENCES T_musique_misc(Id_misc),
+	PRIMARY KEY(Id_misc,Id_art)
+);
+CREATE TABLE TJ_posseder_psdr (
+	Id_misc	INT,
+	Id_blum	INT,
+	FOREIGN KEY(Id_misc) REFERENCES T_musique_misc(Id_misc),
+	FOREIGN KEY(Id_blum) REFERENCES T_album_blum(Id_blum),
+	PRIMARY KEY(Id_misc,Id_blum)
+);
+CREATE TABLE TJ_playap (
+	Id_play	INT,
+	Id_genre	INT,
+	FOREIGN KEY(Id_genre) REFERENCES T_genre_genre(Id_genre),
+	FOREIGN KEY(Id_play) REFERENCES T_playlist_play(Id_play),
+	PRIMARY KEY(Id_play,Id_genre)
+);
+CREATE TABLE TJ_miscap (
+	Id_misc	INT,
+	Id_genre	INT,
+	FOREIGN KEY(Id_misc) REFERENCES T_musique_misc(Id_misc),
+	FOREIGN KEY(Id_genre) REFERENCES T_genre_genre(Id_genre),
+	PRIMARY KEY(Id_misc,Id_genre)
+);
+CREATE TABLE TJ_preference_prf (
+	Id_prsn	INT,
+	Id_stmsc	INT,
+	FOREIGN KEY(Id_stmsc) REFERENCES T_style_musical_stmsc(Id_stmsc),
+	FOREIGN KEY(Id_prsn) REFERENCES T_personne_prsn(Id_prsn),
+	PRIMARY KEY(Id_prsn,Id_stmsc)
+);
+CREATE TABLE T_musique_misc (
+	Id_misc	INT AUTO_INCREMENT,
+	nom_musique	VARCHAR(50),
+	duree_SC	INT,
+	PRIMARY KEY(Id_misc)
+);
+CREATE TABLE T_administrateur_ad (
+	Id_ad	INT AUTO_INCREMENT,
+	password	VARCHAR(50),
+	pseudo_adm	VARCHAR(50),
+	Id_amb	INT NOT NULL,
+	FOREIGN KEY(Id_amb) REFERENCES T_ambiance_amb(Id_amb),
+	PRIMARY KEY(Id_ad)
+);
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (0,'Shatta');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (1,'Summer');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (2,'détente');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (3,'Motivation ');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (4,'Sport');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (5,'Romance');
+INSERT INTO T_playlist_play (Id_play,nom_playlist) VALUES (6,'Hit''s du moment ');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (0,'2002-03-22','konchu','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (1,'2003-10-25','fares','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (2,'2004-11-24','ruben','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (3,'1993-11-28','anais','F');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (4,'2001-12-26','enora','F');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (5,'1995-02-28','l''her','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (6,'1997-04-28','nathan','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (7,'2003-10-30','fred','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (8,'2004-11-03','sam','H');
+INSERT INTO T_personne_prsn (Id_prsn,age,pseudo_prsn,sexe) VALUES (9,'2002-11-10','safi','F');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (0,'sport',10,'2h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (1,'couvoiturage',4,'03h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (2,'soirée',8,'04h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (3,'amoure',2,'01h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (4,'competition ',15,'08h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (5,'bar',30,'03h00');
+INSERT INTO T_ambiance_amb (Id_amb,nom_ambiance,nombre_de_gens,duree_evenement) VALUES (6,'BBQ',5,'02h30');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (0,'Dj chinwax');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (1,'Dj Sebb');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (2,'gamma');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (3,'natoxie');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (4,'mikado');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (5,'kalash');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (6,'yu mei');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (7,'Harry style');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (8,'The weekend');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (9,'avicii');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (10,'the proclaimers');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (11,'major lazer');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (12,'daft punk ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (13,'missy elliott');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (14,'bob marley');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (15,'tone and i ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (16,'michael jackson ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (17,'lil nas x ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (18,'ariana grande ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (19,'TIF');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (20,'damso');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (21,'le will');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (23,'saf');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (24,'soolking ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (25,'seraphine noir');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (26,'koba lad');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (27,'plk');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (28,'aqua ');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (29,'ice spice');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (30,'creeds');
+INSERT INTO T_artiste_art (Id_art,nom_artiste) VALUES (31,'eagles');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (0,'rap');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (1,'jazz');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (2,'classique ');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (3,'pop');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (4,'rock');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (5,'metale');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (6,'elctro');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (7,'reggae');
+INSERT INTO T_genre_genre (Id_genre,nom_genre) VALUES (8,'afro');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (0,'Hotel california','1976-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (1,'Thriller','1982-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (2,'Montero','2021-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (3,'Thank u, next','2019-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (4,'1.6','2023-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (5,'Ipseite','2017-01-01';)
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (6,'L''affranchi','2019-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (7,'Fruit du demon','2018-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (8,'Mental','2019-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (9,'Kaya','1978-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (10,'Peace is the mission','2015-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (11,'Random acces memories','2013-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (12,'Miss e... so addictive','2001-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (13,'The kids are comming-ep','2019-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (14,'Sunshine on leith','1988-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (15,'True','2013-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (16,'Harry''s house','2022-01-01');
+INSERT INTO T_album_blum (Id_blum,nom_album,date_creation) VALUES (17,'single','2010-01-01');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (0,'rap');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (1,'rock');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (2,'pop');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (3,'metal');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (4,'jazz');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (5,'electro');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (6,'classique');
+INSERT INTO T_style_musical_stmsc (Id_stmsc,genre) VALUES (7,'reggae');
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (1,2);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (2,1);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (3,3);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (4,7);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (5,7);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (6,3);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (7,2);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (7,1);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (7,6);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (7,5);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (2,5);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (2,6);
+INSERT INTO TJ_jouer (Id_play,Id_amb) VALUES (4,4);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,0);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,1);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,2);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,3);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,4);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,5);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,6);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,7);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,8);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,9);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (1,24);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,10);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,11);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,12);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,13);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,14);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,15);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,18);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,20);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,21);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,22);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,25);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,29);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,30);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (2,31);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (3,17);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (3,27);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (3,33);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,26);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,28);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,31);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,32);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,16);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,14);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (4,25);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (6,21);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (6,27);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (6,33);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (7,32);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (7,31);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (7,22);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (7,20);
+INSERT INTO TJ_liason (Id_play,Id_misc) VALUES (7,10);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (0,0);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (0,7);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (0,22);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (0,20);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (0,10);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (1,6);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (1,2);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (1,9);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (1,21);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (1,26);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (2,15);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (2,3);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (2,23);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (2,25);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (2,29);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (3,30);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (3,33);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (3,31);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (3,8);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (4,5);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (4,19);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (4,18);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (4,12);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (5,11);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (5,16);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (5,22);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (5,5);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (6,2);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (6,8);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (6,9);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (6,18);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (7,1);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (7,8);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (7,2);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (8,15);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (8,32);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (8,12);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (9,0);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (9,14);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (9,22);
+INSERT INTO TJ_vote_vt (Id_prsn,Id_misc) VALUES (9,33);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (0,0);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (1,1);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (2,2);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (3,3);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (4,4);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (5,5);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (6,3);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (7,3);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (8,6);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (9,0);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (10,7);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (11,8);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (12,9);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (13,10);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (14,11);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (15,12);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (16,13);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (17,14);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (18,15);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (19,16);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (20,17);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (21,18);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (22,19);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (23,20);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (24,21);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (25,23);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (26,24);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (27,25);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (28,26);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (29,27);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (30,28);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (31,29);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (32,30);
+INSERT INTO TJ_creer_cr (Id_misc,Id_art) VALUES (33,21);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (0,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (1,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (2,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (3,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (4,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (5,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (6,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (7,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (8,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (9,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (10,16);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (11,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (12,15);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (13,14);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (14,10);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (15,11);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (16,12);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (17,9);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (18,13);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (19,1);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (20,2);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (21,3);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (22,4);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (23,5);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (24,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (25,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (26,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (27,7);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (28,6);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (29,8);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (30,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (31,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (32,17);
+INSERT INTO TJ_posseder_psdr (Id_misc,Id_blum) VALUES (33,0);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (0,8);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (1,0);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (1,3);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (2,2);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (2,1);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (2,7);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (3,0);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (3,3);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (3,6);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (5,1);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (5,2);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (6,0);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (6,3);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (6,4);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (6,6);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (4,0);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (4,3);
+INSERT INTO TJ_playap (Id_play,Id_genre) VALUES (4,4);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (0,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (1,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (2,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (3,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (4,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (5,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (6,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (7,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (8,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (9,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (10,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (11,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (12,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (13,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (14,6);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (15,6);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (16,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (17,7);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (18,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (19,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (20,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (21,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (22,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (23,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (24,8);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (25,5);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (26,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (27,1);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (28,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (29,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (30,3);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (31,0);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (32,6);
+INSERT INTO TJ_miscap (Id_misc,Id_genre) VALUES (33,4);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (0,6);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (2,3);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (1,7);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (3,6);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (4,5);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (9,3);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (5,2);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (6,4);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (7,1);
+INSERT INTO TJ_preference_prf (Id_prsn,Id_stmsc) VALUES (8,5);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (0,'vespa',105);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (1,'roulman',176);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (2,'toutouni',110);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (3,'ek s tou',130);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (4,'citées d''or shatta ',110);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (5,'lambls',150);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (6,'balssé blessé',110);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (7,'pineco',120);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (8,'dife kako',170);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (9,'banana',96);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (10,'as it was',167);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (11,'blinding lights',200);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (12,'wake me up',250);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (13,'i''m gonna be',220);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (14,'lean on',177);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (15,'get lucky',370);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (16,'get ur freak on',237);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (17,'is this love',233);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (18,'dance monkey',210);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (19,'billie jean',243);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (20,'montero',138);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (21,'7 rings',178);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (22,'shadow boxing',168);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (23,'o macarena',206);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (24,'spero patronum',133);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (25,'la surprise',151);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (26,'guerilla',229);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (27,'all caps',163);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (28,'RR 9.1',201);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (29,'un peu de haine',168);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (30,'barbie girl',198);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (31,'barbie world',110);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (32,'push up',240);
+INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (33,'hotel california',391);
+INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (0,'2552','FRS_Om',2);
+INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (1,'974','KNCH_DG',3);
+INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (2,'123','INV_HH',6);
+INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (3,'29200','CESI_BR',4);

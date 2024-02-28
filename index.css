@@ -96,12 +96,13 @@ a{
   
 }
 
-input[type="text"],[type="password"], input[type="button"] {
+input[type="text"],[type="password"], button {
   border-radius: 5px;
   background-color: rgb(122, 231, 199);
   width: 300px; 
   padding: 5px; 
   margin-bottom: 10px; 
+  font-family: "Audiowide", sans-serif;
   
 }
 .entrer{
@@ -109,7 +110,7 @@ input[type="text"],[type="password"], input[type="button"] {
   box-shadow: 6px 5px #58355e39;
 }
 
-input[type="submit"] {
+button{
   background-color: rgb(122, 231, 199); 
   border: none; 
   padding: 15px 40px; 

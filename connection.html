@@ -1,5 +1,6 @@
 <html>
 <html lang="fr">
+
 <head>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
@@ -12,16 +13,17 @@
 
 <body>
 
-  
-   <form class="form-container">
-    <h1>CONNEXION</h1>
-     <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" class="entrer"><br>
-     <input type="password" id="motDePasse" name="motDepasse" placeholder="Mot de passe" class="entrer"><br><br>
-     <input type="button" onclick="Validation()" value="CONNEXION" class="bouton" >
-     <br>
-     <span><a href= "index.html">ANNULER</a></span>
-   </form>
-  
+    <div class="form-container">
+        <h1>CONNEXION</h1>
+        <form action="auth.php" method="POST">
+            <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" class="entrer" value=""><br>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" class="entrer" value=""><br><br>
+            <button type="submit" class="bouton" name="login">se connecter</button>
+            <br>
+            <span><a href="index.html">ANNULER</a></span>
+        </form>
+    </div>
 
-    <script src="script.js"></script>
+
+    <!-- <script src="script.js"></script> -->
 </body>
