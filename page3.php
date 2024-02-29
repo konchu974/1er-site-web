@@ -1,4 +1,13 @@
+<?php
+require_once("manipulation.php");
+
+session_start();
+
+?>
+
+
 <html lang="fr">
+
 <head>
     <title>Beat Connect</title>
     <link rel="stylesheet" href="pageco.css">
@@ -7,18 +16,21 @@
     <script src="https://kit.fontawesome.com/dc5f9d95ad.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <header>
-        <img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6">
-        <div class ="connexion">
-            <a href="connection.html">
-                <i class="fa-regular fa-user fa-2xl " style="color: #2e2e2e;"></i>
-            </a>
+<header>
+    <img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6">
+    <div class="dropdown">
+        <i class="fa-regular fa-user fa-2xl " style="color: #000000;"></i>
+        <div class="dropdown-content">
+            <a href="profil.php">Profil</a>
+            <a href="logout.php">Se deconnecter</a>
         </div>
-        <h1>Beat Connect</h1>
-    </header>
+    </div>
 
-    <?php
+    <h1>Beat Connect</h1>
+</header>
+
+<body>
+<?php
     require_once("manipulation.php");
     echo "<div class='playlist-container'>";
 
