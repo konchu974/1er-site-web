@@ -102,6 +102,7 @@ $stmt->execute();
 
 if ($stmt->rowCount() == 1) {
     $row = $stmt->fetch();
+    $imgpro = $row['photo_adm'];
     $pwd_hashed = $row["motdepasse"];
 
     if ($pwd_unhashed == $pwd_hashed) {
@@ -114,6 +115,7 @@ if ($stmt->rowCount() == 1) {
         // /\__/ /  __/ |_  /\__/ / |___/\__/ /\__/ /_| |_\ \_/ / |\  |
         // \____/ \___|\__| \____/\____/\____/\____/ \___/ \___/\_| \_/
         //------------------------------------
+        $_SESSION['user_img'] = $imgpro;
         $_SESSION['user'] = $login;
         $_SESSION['loggedIn'] = true;
         //------------------------------------

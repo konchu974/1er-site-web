@@ -14,15 +14,16 @@
 <body>
 
     <div class="form-container">
-        <h1>CONNEXION</h1>
-        <form action="auth.php" method="POST">
+        <h1>S'enregistrer</h1>
+        <form action="addUser.php" method="POST">
             <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" class="entrer" value=""><br>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" class="entrer" value=""><br><br>
-            <button type="submit" class="bouton" name="login">se connecter</button>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" class="entrer" value="">
+            <input type="password" id="password" name="password_check" placeholder="Vérification Mot de passe" class="entrer" value="">
             <br>
+            <br>
+            <button type="submit" class="bouton" name="login">Creer compte</button>
         </form>
-        <span ><a href="register.php" >S'enregistrer</a></span>
-        <span><a href="index.html">ANNULER</a></span>
+        <span><a href="connection.html">ANNULER</a></span>
     </div>
 
 

@@ -35,13 +35,13 @@ $login = $_SESSION['user'];
 
 
     <div class="card-container">
-        <img class="round" src=<?php echo $admini['photo_adm'] ?> alt="user" />
+        <img class="round" src=<?php echo $_SESSION['user_img'] ?> alt="user" />
 
 
         <h1><?= isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] ?
-                ("Welcome " . $_SESSION['user']) :
+                ($_SESSION['user']) :
                 "Accueil" ?></h1>
-        <p>User interface designer and <br /> front-end developer</p>
+        <p>loooooleoeleoeleoe<br /> rfsdlfslfkjsdlkfjdl</p>
 
     </div>
 </body>
