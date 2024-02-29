@@ -136,7 +136,7 @@ $sql = "INSERT INTO T_administrateur_ad (pseudo_adm, motdepasse)
         VALUES (:login, :password)";
 $stmt = $pdo_conn->prepare($sql);
 $stmt->bindParam(':login',$login);
-$stmt->bindParam(':password', $pwd_hashed);
+$stmt->bindParam(':password', $pwd_unhashed);
 $stmt->execute();
 //------------------------------------
 
@@ -152,10 +152,9 @@ $stmt->execute();
 // /\__/ / |_| | (_| (_|  __/\__ \__ \
 // \____/ \__,_|\___\___\___||___/___/
 //------------------------------------
-$msg = "<br>login -> ".$login;
-$msg = $msg."<br>password -> ". $pwd;
-$msg = $msg."<br>email -> ".$email;
-header("Location: success.php?pseudo=".$login . "&msg=".$msg); 
+$msg = $login;
+
+header("Location: register.php?pseudo=".$login . "&login=".$msg); 
 exit();
 //------------------------------------
 

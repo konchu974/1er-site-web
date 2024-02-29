@@ -25,7 +25,11 @@
         </form>
         <span><a href="connection.html">ANNULER</a></span>
     </div>
+    <?php
+    if (isset($_GET['login'])) {
+        echo ('<script>alert("Bienvenue ' . $_GET['login'] . '");</script>');
+    }
 
+    ?>
 
-    <!-- <script src="script.js"></script> -->
 </body>

@@ -28,15 +28,4 @@ $stmt = $pdo_conn->prepare($sql);
 $stmt->execute();
 $musiques = $stmt->fetchAll();
 
-
-
-$sql = "SELECT * FROM T_administrateur_ad WHERE pseudo_adm = :login";
-
-$stmt = $pdo_conn->prepare($sql);
-$stmt->bindParam(':login', $login);
-$stmt->execute();
-$admini = $stmt->fetch();
-
-
-
 ?>
