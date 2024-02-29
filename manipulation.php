@@ -1,7 +1,5 @@
 <?php
 
-
-
 $host = 'localhost';
 $user = 'root';
 $password = '';
@@ -15,17 +13,32 @@ $options = [
 ];
 
 try {
+    // Connexion à la base de données
     $pdo_conn = new PDO($dsn, $user, $password, $options);
+
+    // Requête SQL pour récupérer les playlists avec leurs musiques
+    $sql = "SELECT p.Id_play, p.nom_playlist, m.Id_misc, m.nom_musique, p.photo_src AS playlist_photo, m.photo_path AS musique_photo, m.duree_SC
+            FROM T_playlist_play p
+            JOIN TJ_liason l ON p.Id_play = l.Id_play
+            JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
+
+
+    $stmt = $pdo_conn->query($sql);
+
+
+    $current_playlist = null;
 } catch (PDOException $e) {
-    $msg = $e->getMessage();
-    header("Location: error.php?msg=" . $msg);
-    die("Connection failed: " . $e->getMessage() . ' <br> Wtih error n° ' . (int)$e->getCode());
+    echo "Erreur: " . $e->getMessage();
 }
-
-
-$sql = "SELECT * FROM t_musique_misc";
-$stmt = $pdo_conn->prepare($sql);
-$stmt->execute();
-$musiques = $stmt->fetchAll();
-
 ?>
+
+<script>
+    function toggleMusic(playlistId) {
+        var x = document.getElementById(playlistId);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

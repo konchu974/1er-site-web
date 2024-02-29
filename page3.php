@@ -30,19 +30,37 @@ session_start();
 </header>
 
 <body>
-    <ul>
-        <?php foreach ($musiques as $musique) : ?>
-            <li>
-                <?php echo $musique['nom_musique']; ?>
-                <img src="<?php echo $musique['photo_path']; ?>" alt="<?php echo $musique['nom_musique']; ?>">
-            </li>
-        <?php endforeach; ?>
-    </ul>
+            <?php
+           echo "<div class='playlist-container'>";
 
-</body>
+           while ($row = $stmt->fetch()) {
+            if ($row['nom_playlist'] != $current_playlist) {
+                if ($current_playlist !== null) {
+                    echo "</div>"; // Fermer la précédente div de la playlist
+                }
+                echo "<div>"; // Ouvrir une nouvelle div pour la playlist
+                echo "<h2>Playlist : " . $row['nom_playlist'] . "</h2>";
+                echo "<img src='" . $row['playlist_photo'] . "' alt='Photo de la playlist' class='playlist-photo' onclick=\"toggleMusic('playlist_" . $row['Id_play'] . "')\">";
+                $current_playlist = $row['nom_playlist']; // Mettre à jour la playlist actuelle
+            }
+        
+            // Condition pour parcourir les musiques de la playlist
+            if ($row['nom_playlist'] == $current_playlist) {
+                echo "<div>";
+                echo "<h3>Musique : " . $row['nom_musique'] . "</h3>";
+                echo "<img src='" . $row['musique_photo'] . "' alt='Photo de la musique' class='musique-photo'>";
+                echo "</div>";
+            }
+        }
+        
+        if ($current_playlist !== null) {
+            echo "</div>"; // Fermer la dernière div de la playlist
+        }
+        
+          ?>
+        </body>
 
-
-
+</html>
 
 
 
