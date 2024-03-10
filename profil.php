@@ -13,8 +13,21 @@ $login = $_SESSION['user'];
 <head>
     <title>Beat Connect</title>
     <link rel="stylesheet" href="pageco.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
-    <meta charset="utf8">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ultra&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />    <meta charset="utf8">
     <script src="https://kit.fontawesome.com/dc5f9d95ad.js" crossorigin="anonymous"></script>
 </head>
 
@@ -40,8 +53,8 @@ $login = $_SESSION['user'];
 
         <h1><?= isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] ?
                 ($_SESSION['user']) :
-                "Accueil" ?></h1>
-        <p>loooooleoeleoeleoe<br /> rfsdlfslfkjsdlkfjdl</p>
+                "Vous n'étes pas conncté" ?></h1>
+        <!-- <p>loooooleoeleoeleoe<br /> rfsdlfslfkjsdlkfjdl</p> -->
 
     </div>
 </body>

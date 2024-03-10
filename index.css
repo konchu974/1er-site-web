@@ -1,15 +1,17 @@
 /* palette de couleur  https://coolors.co/ec0b43-58355e-7ae7c7-d6ffb7-fff689 */
 
-header > h1{
-  background-color: rgb(214, 255, 183);
+* {
+  font-family: "PT Serif";
+}
+header > h1 {
   padding-top: 1%;
   height: 50px;
   text-align: center;
   text-align-last: left;
-  font-weight: bold;
-  font-family: "Audiowide", sans-serif;
+  font-family: "Ultra";
 }
-#logo-sfond{
+
+#logo-sfond {
   float: inline-start;
 }
 .dropdown {
@@ -46,50 +48,129 @@ header > h1{
 body {
   position: relative;
   height: 100%;
-  background: linear-gradient(180deg, rgb(214, 255, 183) 0%, rgb(255, 246, 137) 50%, rgb(214, 255, 183) 100%);
+  background-color: aliceblue;
 }
 
-
-#main-grid{
-  
-  width: 100%;
+.slide {
   text-align: center;
-  font-family: "Audiowide", sans-serif;
-
-
 }
+
+.textedefil {
+  width: 100%;
+}
+
+.texte {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 80px;
+  animation: Scroll 10s linear infinite;
+  font-family: "Ultra";
+}
+@keyframes Scroll {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .profile-slide > img {
+  display: block;
+
+  left: 50%;
+  transform: translateX(-50%);
   width: 500px;
   height: auto;
-  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
   transition: width 1s, height 1s, transform 1s, box-shadow 1s;
 }
 
-
 .profile-slide > img:hover {
   width: 520px;
-  box-shadow: 0 80px 80px 0 rgba(0,0,0,0.24), 0 70px 200px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 80px 80px 0 rgba(0, 0, 0, 0.24),
+    0 70px 200px 0 rgba(0, 0, 0, 0.19);
 }
 
-footer{
+.slide > p {
+  font-size: 25px;
+  margin-top: 50px;
+  font-style: bold;
+}
+.btn-inv {
+  background-color: black;
+  color: aliceblue;
+  border-radius: 50px;
+
+  border: none;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column-de {
+  margin-top: 35px;
+  float: left;
+  width: 50%;
+  height: 500px;
+  text-align: center;
+  font-size: 23px;
+  font-style: oblique;
+}
+
+.column-de:nth-child(2) {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectiong:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
   position: relative;
-  background-color:rgb(214, 255, 183);
   opacity: 90%;
   margin-top: 100px;
-
 }
-footer li{
+footer li {
   list-style-type: none;
   width: 40px;
   float: left;
-  margin-top: 20px
-} 
-footer p{
+  margin-top: 20px;
+}
+footer p {
   columns: 3;
 }
+
+.bg-image {
+  background: url(https://picsum.photos/1920/550?random=1) no-repeat center;
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+
+  /* Full height */
+  height: 85%;
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .form-container {
-  background: rgb(255, 245, 130);
-  border-radius: 50px; 
+  background: rgb(253, 251, 251);
+  border-radius: 50px;
   box-shadow: 6px 6px 6px 6px #58355e39;
   padding: 3em;
   margin: 0;
@@ -98,51 +179,66 @@ footer p{
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  
 }
 label {
-  display: block; 
-  margin-bottom: 10px; 
+  display: block;
+  margin-bottom: 10px;
   height: inherit;
-  
 }
-h1{
+h1 {
   color: rgb(0, 0, 0);
-  display: felex;
-  font-family: "Audiowide", sans-serif;
+  display: flex;
+  font-family: "Ultra";
 }
-a{
+a {
   display: flex;
   text-decoration: none;
   color: darkgray;
-  
 }
 
-input[type="text"],[type="password"], button {
+.annuler {
+  float: right;
+  margin-top: 10px;
+  font-size: larger;
+}
+
+input[type="text"],
+[type="password"] {
   border-radius: 5px;
-  background-color: rgb(122, 231, 199);
-  width: 300px; 
-  padding: 5px; 
-  margin-bottom: 10px; 
-  font-family: "Audiowide", sans-serif;
-  
+  background: rgb(225, 204, 204);
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-.entrer{
-  
-  box-shadow: 6px 5px #58355e39;
+.entrer {
+  box-shadow: 6px 8px #58355e39;
 }
 
-button{
-  background-color: rgb(122, 231, 199); 
-  border: none; 
-  padding: 15px 40px;  
+button {
+  border: none;
+  padding: 15px 40px;
+  font-family: "Ultra";
+  width: 300px;
 }
 
-.bouton:hover{
-  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+.btn-inv:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.register{
+.register {
   font-size: 40px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -11,7 +11,12 @@ session_start();
 <head>
     <title>Beat Connect</title>
     <link rel="stylesheet" href="pageco.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
     <meta charset="utf8">
     <script src="https://kit.fontawesome.com/dc5f9d95ad.js" crossorigin="anonymous"></script>
 </head>
@@ -30,7 +35,11 @@ session_start();
 </header>
 
 <body>
-<?php
+    <div class="titlepl">
+    <h1>choisissez votre playlist</h1>
+    <p>une playlist, une ambiance. Vous decidez!</p>
+    </div>
+    <?php
     require_once("manipulation.php");
     echo "<div class='playlist-container'>";
 
@@ -40,27 +49,32 @@ session_start();
                 echo "</div>"; // Fermer la div pour la playlist précédente
             }
             echo "<div class='playlist'>"; // Nouvelle div pour la playlist
-            echo "<h2>Playlist : " . $current_playlist . "</h2>";
-            echo "<button onclick=\"toggleMusic('playlist_" . $row['Id_play'] . "')\">Voir les musiques</button>";
+            echo "<div class='playlist_aff'>";
             echo "<img src='" . $row['playlist_photo'] . "' alt='Photo de la playlist' class='playlist-photo'>";
+            echo "<h3>Playlist : " . $current_playlist . "</h3>";
+            echo "<button onclick=\"toggleMusic('playlist_" . $row['Id_play'] . "')\">Voir les musiques</button>";
+            echo "</div>";
             // Ajouter un identifiant unique à la liste de musiques de la playlist
-            echo "<ul id='playlist_" . $row['Id_play'] . "' style='display:none;'>";
             $current_playlist = $row['nom_playlist']; // Mettre à jour la playlist actuelle
+            echo "<section class='muse'>";
+            echo "<ul id='playlist_" . $row['Id_play'] . "' style='display:none;'>";
         }
 
-        echo "<li>";
+        echo "<li class='slide'>";
         echo "Musique: " . $row['nom_musique'] . " - Durée: " . $row['duree_SC'];
         echo "<br>";
-        echo "Photo: <img src='" . $row['musique_photo'] . "' alt='Photo de la musique' class='musique-photo'><br>";
+        echo "<img src='" . $row['musique_photo'] . "' alt='Photo de la musique' class='musique-photo'><br>";
         echo "</li>";
     }
+
 
     if ($current_playlist !== null) {
         echo "</ul>";
         echo "</div>"; // Fermer la dernière div pour la dernière playlist
+        echo "</section>";
     }
     ?>
-     <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

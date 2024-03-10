@@ -1,10 +1,17 @@
+* {
+  font-family: "PT Serif";
+}
+
+h1 {
+  font-family: "Ultra";
+}
+
 header > h1 {
   padding-top: 1%;
   height: 50px;
   text-align: center;
   text-align-last: left;
-  font-weight: bold;
-  font-family: "Audiowide", sans-serif;
+  font-family: "Ultra";
 }
 #logo-sfond {
   float: inline-start;
@@ -43,12 +50,17 @@ header > h1 {
 body {
   position: relative;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgb(232, 95, 92) 0%,
-    rgb(122, 231, 199) 60%,
-    rgb(88, 53, 94) 100%
-  );
+  background: rgb(225, 204, 204);
+}
+
+.titlepl {
+  text-align: center;
+}
+
+.titlepl > p {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-bottom: 45px;
 }
 
 .card-container {
@@ -65,7 +77,9 @@ body {
   width: 350px;
   max-width: 100%;
   text-align: center;
+  height: 400px;
 }
+
 
 .card-container .pro {
   color: #231e39;
@@ -79,6 +93,7 @@ body {
   left: 30px;
 }
 
+
 .card-container .round {
   border: 1px solid #03bfcb;
   border-radius: 50%;
@@ -86,21 +101,47 @@ body {
 }
 .round {
   width: 150px;
-  height: 150px; 
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-
 .playlist-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px; 
+  grid-gap: 20px;
+}
+
+.playlist_aff {
+  background-color: black;
+  text-align: center;
+  color: aliceblue;
+  border-radius: 5%;
+}
+
+.playlist_aff > button {
+  margin-bottom: 15px;
+  border-radius: 50px;
+  padding: 5px 15px;
+  border: none;
+  font-size: 16px;
+}
+
+.playlist_aff> img {
+  margin-top: 20px;
+  width: 180px;
+  height: 180px;
+  border-radius: 5%;
+  box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 1),
+    25px 0px 20px -20px rgba(0, 0, 0, 0.45),
+    0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+    -25px 0px 20px -20px rgba(0, 0, 0, 0.45);
+}
+
+.musique-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 
-.playlist-photo, .musique-photo {
-  width: 200px;
-  height: auto;
-  cursor: pointer; 
-}
