@@ -28,23 +28,37 @@ JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
     // Requête SQL pour compter les likes pour chaque playlist
     $sql_likes = "SELECT Id_playlist, COUNT(*) AS like_count FROM tj_vote_vt WHERE vote = 'like' GROUP BY Id_playlist";
 
+    $sql_play_vote = "SELECT MAX(vote) AS vote_max, p.nom_playlist
+    FROM tj_vote_vt v
+    JOIN t_playlist_play p ON v.Id_playlist = p.Id_playlist";
+
     // Exécuter la requête pour compter les likes
     $stmt_likes = $pdo_conn->query($sql_likes);
+    $stmt_play_vote = $pdo_conn->query($sql_play_vote);
 
     // Initialiser un tableau pour stocker les résultats des votes
     $playlist_likes = [];
+
+    // Récupération des valeurs dans des variables
+    $row_play_vote = $stmt_play_vote->fetch();
+    $vote_max = $row_play_vote['vote_max'];
+    $nom_playlist = $row_play_vote['nom_playlist'];
 
     // Parcourir les résultats de la requête et stocker les likes dans le tableau
     while ($row_likes = $stmt_likes->fetch()) {
         $playlist_likes[$row_likes['Id_playlist']] = $row_likes['like_count'];
     }
+
+
+    $votemax = $row['vote_max'];
+
     $current_playlist = null;
     $current_playlist_id = null;
 
 
 
 
-    $sqlpro = "SELECT *, (SELECT MAX(vote) FROM tj_vote_vt) AS vote_max
+    $sqlpro = "SELECT *
     FROM T_administrateur_ad
     JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb;";
 
