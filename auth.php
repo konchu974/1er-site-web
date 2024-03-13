@@ -104,7 +104,6 @@ if ($stmt->rowCount() == 1) {
     $row = $stmt->fetch();
     $imgpro = $row['photo_adm'];
     $pwd_hashed = $row["motdepasse"];
-    $user_id = $row["Id_ad"];
 
     if ($pwd_unhashed == $pwd_hashed) {
 
@@ -119,7 +118,6 @@ if ($stmt->rowCount() == 1) {
         $_SESSION['user_img'] = $imgpro;
         $_SESSION['user'] = $login;
         $_SESSION['loggedIn'] = true;
-        $_SESSION['user_id'] = $user_id;
         //------------------------------------
     } else {
         $msg = $msg . "Password incorrect." ;
