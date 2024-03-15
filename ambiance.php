@@ -32,6 +32,7 @@ require_once("manipulation.php");
     <h1>Beat Connect</h1>
 </header>
 
+
 <body>
     <?php
     // Afficher toutes les ambiances
