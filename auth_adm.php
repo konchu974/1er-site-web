@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit();
 }
 
-$login = isset($_POST['pseudo']) ? $_POST['pseudo'] : "";
+$login = isset($_POST['pseudo_adm']) ? $_POST['pseudo_adm'] : "";
 $pwd_unhashed = isset($_POST['password']) ? $_POST['password'] : "";
 
 
@@ -94,17 +94,16 @@ try {
 $msg = "";
 
 $sql = "SELECT *
-            FROM T_administrateur_ad
-            WHERE pseudo_adm = :login";
+            FROM t_admin
+            WHERE pseudo = :login";
 $stmt = $pdo_conn->prepare($sql);
 $stmt->bindParam(':login', $login);
 $stmt->execute();
 
 if ($stmt->rowCount() == 1) {
     $row = $stmt->fetch();
-    $imgpro = $row['photo_adm'];
-    $pwd_hashed = $row["motdepasse"];
-    $user_id = $row["id_ad"];
+    // $imgpro = $row['photo'];
+    $pwd_hashed = $row["mot_de_passe"];
 
     if ($pwd_unhashed == $pwd_hashed) {
 
@@ -119,10 +118,9 @@ if ($stmt->rowCount() == 1) {
         $_SESSION['user_img'] = $imgpro;
         $_SESSION['user'] = $login;
         $_SESSION['loggedIn'] = true;
-        $_SESSION['user_id'] = $user_id;
         //------------------------------------
     } else {
-        $msg = $msg . "Password incorrect." ;
+        $msg = $msg . "Password incorrect.";
     }
 } else {
     $msg = "Login doesn't exists or is duplicate.";
@@ -143,6 +141,6 @@ if ($msg != "") {
     header("Location: error.php?msg=" . $msg);
     exit();
 } else {
-    header("Location: page3.php");
+    header("Location: admin_dashboard.php");
 }
 //------------------------------------

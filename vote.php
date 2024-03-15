@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['playlist'], $_POST['vo
 
     // Vous devez également récupérer l'ID de l'utilisateur à partir de la session ou d'autres informations
     // Supposons que l'ID de l'utilisateur est stocké dans $_SESSION['user_id']
-    $user_id = $_SESSION['user_id'];
+    $user_id = null;
 
     // Enregistrer le vote dans la base de données
     // Assurez-vous d'utiliser des requêtes préparées pour éviter les injections SQL

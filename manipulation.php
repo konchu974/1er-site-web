@@ -19,14 +19,15 @@ try {
     // Requête SQL pour récupérer les playlists avec leurs musiques
     $sql = "SELECT p.Id_play, p.nom_playlist, m.Id_misc, m.nom_musique, p.photo_src AS playlist_photo, m.photo_path AS musique_photo, m.duree_SC
     FROM T_playlist_play p
-JOIN TJ_liason l ON p.Id_play = l.Id_play
+JOIN Tj_liason l ON p.Id_play = l.Id_play
 JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
 
     // Exécuter la requête pour récupérer les playlists
     $stmt = $pdo_conn->query($sql);
 
     // Requête SQL pour compter les likes pour chaque playlist
-    $sql_likes = "SELECT Id_playlist, COUNT(*) AS like_count FROM tj_vote_vt WHERE vote = 'like' GROUP BY Id_playlist";
+    $sql_likes = "SELECT Id_playlist, COUNT(*) AS like_count FROM tj_vote_vt WHERE vote = 'like' GROUP BY Id_playlist ORDER BY like_count DESC 
+    LIMIT 1;";
 
     // Exécuter la requête pour compter les likes
     $stmt_likes = $pdo_conn->query($sql_likes);
@@ -44,16 +45,42 @@ JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
 
 
 
-    $sqlpro = "SELECT *, (SELECT MAX(vote) FROM tj_vote_vt) AS vote_max
-    FROM T_administrateur_ad
-    JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb;";
+
+
+
+
+
+
+    // Requête pour obtenir les informations de la playlist
+
+
+    // Affichage des informations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // $sqlpro = "SELECT *, (SELECT MAX(vote) FROM tj_vote_vt) AS vote_max
+    // FROM T_administrateur_ad
+    // JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb;";
 
     $ambpref = "SELECT t_ambiance_amb.Id_amb, COUNT(t_administrateur_ad.Id_ad) AS nombre_apparitions
     FROM t_administrateur_ad
     JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb
     GROUP BY t_ambiance_amb.Id_amb";
 
-    $stmtpro = $pdo_conn->query($sqlpro);
+    // $stmtpro = $pdo_conn->query($sqlpro);
+
+
     $resultat = $pdo_conn->query($sql);
 
 

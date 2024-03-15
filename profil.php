@@ -53,7 +53,7 @@ $login = $_SESSION['user'];
 
         <h1><?= isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] ?
                 ($_SESSION['user']) :
-                "Vous n'étes pas conncté" ?></h1>
+                "Vous n'étes pas connecté" ?></h1>
         <!-- <p>loooooleoeleoeleoe<br /> rfsdlfslfkjsdlkfjdl</p> -->
 
     </div>

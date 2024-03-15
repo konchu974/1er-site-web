@@ -62,6 +62,62 @@ body {
   margin-top: -20px;
   margin-bottom: 45px;
 }
+.btn_spe {
+  display: flex;
+  justify-content: center;
+}
+
+#background {
+  display: block;
+  background: #000000;
+  text-align: center;
+  border-radius: 50px;
+  padding: 10px; /* Espacement interne */
+  width: fit-content; /* Largeur basée sur le contenu */
+  margin: 0 auto; /* Centre horizontalement */
+  margin-bottom: 50px;
+}
+
+#background a {
+  display: block;
+  padding: 10px 20px;
+  color: aliceblue;
+  position: relative;
+  z-index: 2;
+  margin: auto; /* Ajout de cette ligne pour centrer horizontalement */
+  width: fit-content; /* Permet au bouton de s'adapter à son contenu */
+}
+
+#background div {
+  position: absolute;
+  display: block;
+  width: fit-content; /* Largeur basée sur le contenu */
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  background: #ffd583;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.8s all ease;
+}
+
+#background:hover div {
+  width: 100%;
+}
+
+#background span {
+  position: absolute;
+  color: #6087b8;
+  width: 123px;
+  top: 0;
+  left: 0;
+  display: block;
+  text-align: center;
+  height: 100%;
+  padding: 10px 0;
+}
 
 .card-container {
   background-color: #231e39;
@@ -80,7 +136,6 @@ body {
   height: 400px;
 }
 
-
 .card-container .pro {
   color: #231e39;
   background-color: #febb0b;
@@ -92,7 +147,6 @@ body {
   top: 30px;
   left: 30px;
 }
-
 
 .card-container .round {
   border: 1px solid #03bfcb;
@@ -127,7 +181,7 @@ body {
   font-size: 16px;
 }
 
-.playlist_aff> img {
+.playlist_aff > img {
   margin-top: 20px;
   width: 180px;
   height: 180px;
@@ -143,5 +197,3 @@ body {
   height: 150px;
   border-radius: 50%;
 }
-
-
