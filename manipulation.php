@@ -84,6 +84,35 @@ JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
     $resultat = $pdo_conn->query($sql);
 
 
+    function getAllAmbiances() {
+        global $pdo_conn;
+    
+        // Requête SQL pour récupérer toutes les ambiances
+        $sql = "SELECT Id_amb, nom_ambiance FROM t_ambiance_amb";
+        $stmt = $pdo_conn->query($sql);
+        
+    
+        return $stmt;
+    }
+    
+    // Fonction pour récupérer les playlists associées à une ambiance spécifique
+    function getPlaylistsByAmbiance($ambiance_id) {
+        global $pdo_conn;
+    
+        // Requête SQL pour récupérer les playlists associées à l'ambiance spécifiée
+        $sql = "SELECT p.nom_playlist, p.photo_src
+                FROM T_playlist_play p
+                JOIN TJ_jouer l ON p.Id_play = l.Id_play
+                -- JOIN T_musique_misc m ON l.Id_misc = m.Id_misc
+                WHERE l.Id_amb = :ambiance_id";
+    
+        $stmt = $pdo_conn->prepare($sql);
+        $stmt->execute(['ambiance_id' => $ambiance_id]);
+    
+        return $stmt;
+    }
+
+
     $current_pro = null;
 } catch (PDOException $e) {
     echo "Erreur: " . $e->getMessage();
