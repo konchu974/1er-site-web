@@ -17,7 +17,7 @@
 </header>
 
 <body>
-<div class="bg-image"></div>
+  <div class="bg-image"></div>
   <div class="form-container">
     <h1>S'enregistrer</h1>
     <form action="addUser.php" method="POST">
@@ -26,7 +26,7 @@
       <input type="password" id="password" name="password_check" placeholder="Vérification Mot de passe" class="entrer" value=""><br><br>
       <button type="submit" class="btn-inv" name="login">Creer compte</button>
     </form>
-    <span><a href="connection.html">ANNULER</a></span>
+    <span class="annuler"><a href="index.html">ANNULER</a></span>
   </div>
   <?php
   if (isset($_GET['login'])) {

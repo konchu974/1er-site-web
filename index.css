@@ -104,15 +104,45 @@ body {
   font-style: bold;
 }
 
-
-
-.btn-inv {
-  background-color: black;
-  color: aliceblue;
+#background {
+  display: block;
+  background: #000000;
+  text-align: center;
   border-radius: 50px;
+  padding: 10px; /* Espacement interne */
+  width: fit-content; /* Largeur basée sur le contenu */
+  margin: 0 auto; /* Centre horizontalement */
+  margin-bottom: 50px;
+}
 
-  border: none;
-  font-size: 16px;
+#background a {
+  display: block;
+  padding: 10px 20px;
+  color: aliceblue;
+  position: relative;
+  font-size: 20px;
+  z-index: 2;
+  margin: auto; /* Ajout de cette ligne pour centrer horizontalement */
+  width: fit-content; /* Permet au bouton de s'adapter à son contenu */
+}
+
+#background div {
+  position: absolute;
+  display: block;
+  width: fit-content; /* Largeur basée sur le contenu */
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  background: #ffd583;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.8s all ease;
+}
+
+#background:hover div {
+  width: 100%;
 }
 
 * {
@@ -224,6 +254,14 @@ button {
   font-family: "Ultra";
   width: 300px;
 }
+.btn-inv {
+  background-color: black;
+  color: aliceblue;
+  border-radius: 50px;
+
+  border: none;
+  font-size: 16px;
+}
 
 .btn-inv:hover {
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -231,4 +269,10 @@ button {
 
 .register {
   font-size: 40px;
+}
+
+.annuler {
+  float: right;
+  margin-top: 10px;
+  font-size: larger;
 }

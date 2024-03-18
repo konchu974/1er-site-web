@@ -62,14 +62,14 @@ body {
   margin-top: -20px;
   margin-bottom: 45px;
 }
-.btn_spe {
+.btn_inv {
   display: flex;
   justify-content: center;
 }
 
 #background {
   display: block;
-  background: #000000;
+  background: #ffffff;
   text-align: center;
   border-radius: 50px;
   padding: 10px; /* Espacement interne */
@@ -81,7 +81,7 @@ body {
 #background a {
   display: block;
   padding: 10px 20px;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   position: relative;
   z-index: 2;
   margin: auto; /* Ajout de cette ligne pour centrer horizontalement */
@@ -122,7 +122,7 @@ body {
 .card-container {
   background-color: #231e39;
   border-radius: 5px;
-  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 20px -10px rgba(255, 255, 255, 0.75);
   color: #b3b8cd;
   padding-top: 30px;
   position: absolute;
@@ -163,7 +163,7 @@ body {
 .playlist-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-gap: 60px;
 }
 
 .playlist_aff {
@@ -196,4 +196,100 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.playlist_vote {
+  background-color: #000000;
+  border-radius: 50px;
+  box-shadow: 6px 6px 6px 6px #58355e39;
+  padding: 5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: aliceblue;
+  text-align: center;
+}
+.img_vote {
+  width: 350px;
+  height: 350px;
+  border-radius: 5%;
+  box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 1),
+    25px 0px 20px -20px rgba(0, 0, 0, 0.45),
+    0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+    -25px 0px 20px -20px rgba(0, 0, 0, 0.45);
+}
+
+#background2 {
+  display: block;
+  background: #ffffff;
+  text-align: center;
+  border-radius: 50px;
+  padding: 10px; /* Espacement interne */
+  width: fit-content; /* Largeur basée sur le contenu */
+  margin: 0 auto; /* Centre horizontalement */
+  margin-bottom: 50px;
+}
+
+#background2 a {
+  display: block;
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+  position: relative;
+  z-index: 2;
+  margin: auto; /* Ajout de cette ligne pour centrer horizontalement */
+  width: fit-content; /* Permet au bouton de s'adapter à son contenu */
+}
+
+#background2 div {
+  position: absolute;
+  display: block;
+  width: fit-content; /* Largeur basée sur le contenu */
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  background: #ffd583;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.8s all ease;
+}
+
+#background2:hover div {
+  width: 100%;
+}
+
+#background2 span {
+  position: absolute;
+  color: #6087b8;
+  width: 123px;
+  top: 0;
+  left: 0;
+  display: block;
+  text-align: center;
+  height: 100%;
+  padding: 10px 0;
+}
+.container_btn {
+  text-align: center;
+  margin-top: 650px;
+}
+
+.btn {
+  background-color: black;
+  color: aliceblue;
+  border-radius: 50px;
+
+  border: none;
+  font-size: 16px;
+  padding: 30px 30px;
+}
+.btn:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ambb {
+  font-family: "Ultra";
 }

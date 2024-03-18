@@ -20,7 +20,7 @@ require_once("manipulation.php");
 </head>
 
 <header>
-    <img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6">
+<a href="page3.php"><img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6"></a>
     <div class="dropdown">
         <i class="fa-regular fa-user fa-2xl " style="color: #000000;"></i>
         <div class="dropdown-content">
@@ -59,6 +59,7 @@ require_once("manipulation.php");
             echo "<div class='playlist-container'>";
             while ($playlist = $stmt_playlists->fetch()) {
                 echo "<div class='playlist'>";
+                echo "<div class='playlist_aff'>";
                 echo "<h3>Playlist : " . $playlist['nom_playlist'] . "</h3>";
                 echo "<img src='" . $playlist['photo_src'] . "' alt='Photo de la playlist' style='max-width: 100px;'>";
                 echo "<ul>";

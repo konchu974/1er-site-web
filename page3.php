@@ -45,9 +45,7 @@ require_once("manipulation.php");
     while ($row = $stmt->fetch()) {
         if ($row['nom_playlist'] != $current_playlist) {
             if ($current_playlist !== null) {
-                echo "</div>"; // Fermer la div pour la playlist précédente
-                // Afficher le formulaire de vote pour la playlist précédente
-
+                echo "</div>";
             }
             $current_playlist_id = $row['Id_play'];
             echo "<div class='playlist'>"; // Nouvelle div pour la playlist
@@ -67,7 +65,7 @@ require_once("manipulation.php");
             echo "</div>";
             echo "<button onclick=\"toggleMusic('playlist_" . $row['Id_play'] . "')\">Voir les musiques</button>";
             echo "</div>";
-            // Ajouter un identifiant unique à la liste de musiques de la playlist
+
             $current_playlist = $row['nom_playlist']; // Mettre à jour la playlist actuelle
             $current_playlist_id = $row['Id_play'];
             echo "<section class='muse'>";
@@ -84,29 +82,28 @@ require_once("manipulation.php");
 
     if ($current_playlist !== null) {
         echo "</ul>";
-        echo "</div>"; // Fermer la dernière div pour la dernière playlist
+        echo "</div>";
     }
-    echo "</div>"; // Fermer la div pour la liste de toutes les playlists
+    echo "</div>";
 
-    // Afficher les likes pour chaque playlist
+    // Afficher les likes
     foreach ($playlist_likes as $playlist_id => $like_count) {
         echo "Playlist ID: " . $playlist_id . ", Nombre de votes 'like': " . $like_count . "<br>";
     }
 
-
-
-
-
     ?>
 
-        <div class="btn_sp">
-            <div id="background">
-                <a href="affichage_choix.php?like_count=<?php echo urlencode($like_count); ?>&playlist_id=<?php echo urlencode($playlist_id); ?>" type="submit">
-                    fin des votes
-                    <div><span>Vous-etes sur?</span></div>
-                </a>
-            </div>
+    <div class="btn_sp2">
+        <div id="background2">
+            <a href="affichage_choix.php?like_count=<?php echo urlencode($like_count); ?>&playlist_id=<?php echo urlencode($playlist_id); ?>" type="submit">
+                fin des votes
+                <div><span>Vous-etes sur?</span></div>
+            </a>
         </div>
+    </div>
+    <a href="ambiance.php" class="ambb">
+        <h3>Voir les ambiance avant de faire votre choix?</h3>
+    </a>
 
     <script src="script.js"></script>
 </body>

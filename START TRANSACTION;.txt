@@ -101,7 +101,7 @@ CREATE TABLE T_musique_misc (
 	duree_SC	INT,
 	PRIMARY KEY(Id_misc)
 );
-CREATE TABLE T_administrateur_ad (
+CREATE TABLE t_user (
 	Id_ad	INT AUTO_INCREMENT,
 	password	VARCHAR(50),
 	pseudo_adm	VARCHAR(50),
@@ -460,7 +460,7 @@ INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (30,'barbie gir
 INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (31,'barbie world',110);
 INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (32,'push up',240);
 INSERT INTO T_musique_misc (Id_misc,nom_musique,duree_SC) VALUES (33,'hotel california',391);
-INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (0,'2552','FRS_Om',2);
-INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (1,'974','KNCH_DG',3);
-INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (2,'123','INV_HH',6);
-INSERT INTO T_administrateur_ad (Id_ad,password,pseudo_adm,Id_amb) VALUES (3,'29200','CESI_BR',4);
+INSERT INTO t_user (Id_ad,password,pseudo_adm,Id_amb) VALUES (0,'2552','FRS_Om',2);
+INSERT INTO t_user (Id_ad,password,pseudo_adm,Id_amb) VALUES (1,'974','KNCH_DG',3);
+INSERT INTO t_user (Id_ad,password,pseudo_adm,Id_amb) VALUES (2,'123','INV_HH',6);
+INSERT INTO t_user (Id_ad,password,pseudo_adm,Id_amb) VALUES (3,'29200','CESI_BR',4);

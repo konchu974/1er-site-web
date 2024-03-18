@@ -20,7 +20,7 @@ require_once("manipulation.php");
 </head>
 
 <header>
-    <img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6">
+    <a href="page3.php"><img id="logo-sfond" src="image/Music-Logo-sans-fond.png" alt="Music-Logo-sans-fond" width="100" height="66.6"></a>
     <div class="dropdown">
         <i class="fa-regular fa-user fa-2xl " style="color: #000000;"></i>
         <div class="dropdown-content">
@@ -33,65 +33,62 @@ require_once("manipulation.php");
 </header>
 
 <body>
-    <div class='playlist'>
-        <div class='playlist_aff'>
 
-            <?php
-            $host = 'localhost';
-            $user = 'root';
-            $password = '';
-            $dbname = 'site';
-            $charset = 'utf8mb4';
-            $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-            $options = [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false,
-            ];
-            
-            try {
-                // Connexion à la base de données
-                $pdo_conn = new PDO($dsn, $user, $password, $options);
 
-                // Configuration des options de PDO pour afficher les exceptions en cas d'erreur
-                $pdo_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    <?php
 
-                if (isset($_GET['playlist_id'])) {
-                    $playlist_id = $_GET['playlist_id'];
 
-                    // Préparation de la requête SQL pour récupérer les données de la playlist
-                    $sql = "SELECT * FROM t_playlist_play WHERE Id_play = :playlist_id";
+        if (isset($_GET['playlist_id'])) {
+            $playlist_id = $_GET['playlist_id'];
 
-                    // Préparation de la requête
-                    $stmt = $pdo_conn->prepare($sql);
+            // requête pour récupérer donnéesplaylist
+            $sql = "SELECT * FROM t_playlist_play WHERE Id_play = :playlist_id";
 
-                    // Liaison des paramètres
-                    $stmt->bindParam(':playlist_id', $playlist_id, PDO::PARAM_INT);
 
-                    // Exécution de la requête
-                    $stmt->execute();
+            $stmt = $pdo_conn->prepare($sql);
 
-                    // Récupération des résultats
-                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    // Vérification si une playlist a été trouvée
-                    if ($result) {
-                        // Affichage des données de la playlist
-                        echo "Nom de la playlist : " . $result["nom_playlist"] . "<br>";
-                        echo '<img src="' . $result["photo_src"] . '" alt="Photo de la playlist"><br>';
-                    } else {
-                        echo "Aucune playlist trouvée avec cet ID.";
-                    }
-                } else {
-                    echo "Aucun ID de playlist spécifié dans l'URL.";
-                }
-            } catch (PDOException $e) {
-                // En cas d'erreur PDO, afficher le message d'erreur
-                echo "Erreur : " . $e->getMessage();
+            $stmt->bindParam(':playlist_id', $playlist_id, PDO::PARAM_INT);
+
+
+            $stmt->execute();
+
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Vérification si une playlist a été trouvée
+            if ($result) {
+
+                echo "<div class='playlist_vote'>";
+                echo "<h2>la playlist la plus votée est : " . $result["nom_playlist"] . "<h2>";
+                echo '<img src="' . $result["photo_src"] . '" alt="Photo de la playlist" class="img_vote">';
+
+                echo "</div>";
+            } else {
+                echo "Aucune playlist trouvée avec cet ID.";
             }
+        } else {
+            echo "Aucun ID de playlist spécifié";
+        }
 
-            ?>
 
-        </div>
-    </div>
+    ?>
+
+<div class="container_btn">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <button type="submit" name="sup" class="btn">Supprimer les votes</button>
+    </form>
+</div>
+
+    <?php
+    if (isset($_POST['sup'])) {
+        $sql = "DELETE FROM tj_vote_vt;";
+        $pdo_conn->exec($sql);
+        header("Location: page3.php");
+        exit();
+    }
+
+    ?>
+
+
 </body>

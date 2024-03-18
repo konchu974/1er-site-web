@@ -16,23 +16,23 @@ try {
     // Connexion à la base de données
     $pdo_conn = new PDO($dsn, $user, $password, $options);
 
-    // Requête SQL pour récupérer les playlists avec leurs musiques
+    // Requête récupére les playlists avec leurs musiques
     $sql = "SELECT p.Id_play, p.nom_playlist, m.Id_misc, m.nom_musique, p.photo_src AS playlist_photo, m.photo_path AS musique_photo, m.duree_SC
     FROM T_playlist_play p
-JOIN Tj_liason l ON p.Id_play = l.Id_play
-JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
+    JOIN Tj_liason l ON p.Id_play = l.Id_play
+    JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
 
-    // Exécuter la requête pour récupérer les playlists
+
     $stmt = $pdo_conn->query($sql);
 
-    // Requête SQL pour compter les likes pour chaque playlist
+    // compte likes chaque playlist
     $sql_likes = "SELECT Id_playlist, COUNT(*) AS like_count FROM tj_vote_vt WHERE vote = 'like' GROUP BY Id_playlist ORDER BY like_count DESC 
     LIMIT 1;";
 
-    // Exécuter la requête pour compter les likes
+
     $stmt_likes = $pdo_conn->query($sql_likes);
 
-    // Initialiser un tableau pour stocker les résultats des votes
+    // Initialiser tableau stocke résultats des votes
     $playlist_likes = [];
 
     // Parcourir les résultats de la requête et stocker les likes dans le tableau
@@ -44,22 +44,17 @@ JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
 
 
 
+    $sqlpro = "SELECT *, (SELECT MAX(vote) FROM tj_vote_vt) AS vote_max
+    FROM t_user
+    JOIN t_ambiance_amb ON t_user.Id_amb = t_ambiance_amb.Id_amb;";
+
+   
+
+    $stmtpro = $pdo_conn->query($sqlpro);
+    $resultat = $pdo_conn->query($sql);
 
 
-
-
-
-
-
-    // Requête pour obtenir les informations de la playlist
-
-
-    // Affichage des informations
-
-
-
-
-
+    $current_pro = null;
 
 
 
@@ -69,46 +64,40 @@ JOIN T_musique_misc m ON l.Id_misc = m.Id_misc";
 
 
 
-    // $sqlpro = "SELECT *, (SELECT MAX(vote) FROM tj_vote_vt) AS vote_max
-    // FROM T_administrateur_ad
-    // JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb;";
 
-    $ambpref = "SELECT t_ambiance_amb.Id_amb, COUNT(t_administrateur_ad.Id_ad) AS nombre_apparitions
-    FROM t_administrateur_ad
-    JOIN t_ambiance_amb ON t_administrateur_ad.Id_amb = t_ambiance_amb.Id_amb
-    GROUP BY t_ambiance_amb.Id_amb";
 
-    // $stmtpro = $pdo_conn->query($sqlpro);
 
 
     $resultat = $pdo_conn->query($sql);
 
 
-    function getAllAmbiances() {
+    function getAllAmbiances()
+    {
         global $pdo_conn;
-    
+
         // Requête SQL pour récupérer toutes les ambiances
         $sql = "SELECT Id_amb, nom_ambiance FROM t_ambiance_amb";
         $stmt = $pdo_conn->query($sql);
-        
-    
+
+
         return $stmt;
     }
-    
+
     // Fonction pour récupérer les playlists associées à une ambiance spécifique
-    function getPlaylistsByAmbiance($ambiance_id) {
+    function getPlaylistsByAmbiance($ambiance_id)
+    {
         global $pdo_conn;
-    
+
         // Requête SQL pour récupérer les playlists associées à l'ambiance spécifiée
         $sql = "SELECT p.nom_playlist, p.photo_src
                 FROM T_playlist_play p
                 JOIN TJ_jouer l ON p.Id_play = l.Id_play
                 -- JOIN T_musique_misc m ON l.Id_misc = m.Id_misc
                 WHERE l.Id_amb = :ambiance_id";
-    
+
         $stmt = $pdo_conn->prepare($sql);
         $stmt->execute(['ambiance_id' => $ambiance_id]);
-    
+
         return $stmt;
     }
 
